@@ -20,10 +20,6 @@ macro(setByDefault VAR_NAME VAR_VALUE)
   endif(NOT DEFINED ${VAR_NAME})
 endmacro()
 
-# is -Wall still needed?
-add_definitions (-Wall)
-
-
 include(GNUInstallDirs)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -53,15 +49,12 @@ add_definitions("-DLXQT_PANEL_VERSION=\"${LXQT_PANEL_VERSION}\"")
 
 include(LXQtPreventInSourceBuilds)
 include(LXQtTranslate)
-include(LXQtCompilerSettings)
 include(LXQtCompilerSettings NO_POLICY_SCOPE)
 
 # Warning: This must be before add_subdirectory(panel). Move with caution.
 set(PLUGIN_DIR "${CMAKE_INSTALL_FULL_LIBDIR}/lxqt-panel")
 add_definitions(
     -DPLUGIN_DIR=\"${PLUGIN_DIR}\"
-    -DQT_USE_QSTRINGBUILDER
-    -DQT_NO_FOREACH
 )
 message(STATUS "Panel plugins location: ${PLUGIN_DIR}")
 
